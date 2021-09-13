@@ -9,10 +9,12 @@ namespace MembershopTest.Page
     {
 
         private IReadOnlyCollection<IWebElement> _sizeButtons => Driver.FindElements(By.XPath("//div[@class='variants clearfix']//*[@type='button']"));
-        private SelectElement _amountDropdown => new SelectElement(Driver.FindElement(By.XPath("//select[@name='am']")));
-        private IWebElement _addIntoCartVButton => Driver.FindElement(By.XPath("//div[@class='variant-select']//input[@type='submit'][@value='Pirkti']"));
+        private IWebElement _addIntoCartVButtonSubmit => Driver.FindElement(By.XPath("//div[@class='variant-select']//input[@type='submit'][@value='Pirkti']"));
+        private IWebElement _addIntoCartVButtonButton => Driver.FindElement(By.XPath("//div[@class='variant-select']//input[@type='button'][@value='Pirkti']"));
+
         private IWebElement _cartIconTop => Driver.FindElement(By.CssSelector(".basket.navbar-item.dropdown.active"));
         private IWebElement _cartIconPopUp => Driver.FindElement(By.XPath("//a[@class='btn btn-primary btn-block btn-checkout gaq-track-event-click'][@data-ga_label='Pirkti iš karto']"));
+
 
 
         public MembershopItemPage(IWebDriver webdriver) : base(webdriver)
@@ -30,14 +32,17 @@ namespace MembershopTest.Page
             }
 
         }
-        public void SelectAmountByDropdown(string amount)
-        {
-            _amountDropdown.SelectByText("1 vnt.");
-        }
 
         public void AddIntoCart()
         {
-            _addIntoCartVButton.Click();
+            if (_addIntoCartVButtonSubmit.Enabled)
+            { 
+                _addIntoCartVButtonSubmit.Click(); 
+            }
+            if (!(_addIntoCartVButtonSubmit.Enabled))
+            {
+                _addIntoCartVButtonButton.Click();
+            }
         }
 
         public void OpenCartImmediately()
