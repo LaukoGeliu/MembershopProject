@@ -114,6 +114,14 @@ namespace MembershopTest.Page
                 }
             }
         }
+
+        public void LogOut()
+        {
+            Actions action = new Actions(Driver);
+            action.MoveToElement(_userAccountNavigation);
+            action.Build().Perform();
+            _logoutButton.Click();
+        }
     }
 }
 
