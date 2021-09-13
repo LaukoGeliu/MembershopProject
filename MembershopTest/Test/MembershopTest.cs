@@ -23,7 +23,7 @@ namespace MembershopTest.Test
         }
 
 
-        [TestCase("PUDRA", 30, TestName = "Test search field and price slide")]
+        [TestCase("PUDRA", 30, TestName = "Test search field for PUDRA and max price slide until 30")]
         public static void TestSearchAndSlide(string searchValue, double maxPrice)
         {
             _membershopHomePage.NavigateToPage();
@@ -58,8 +58,8 @@ namespace MembershopTest.Test
         }
 
 
-        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 0, "37", "119.00", TestName = "Select item shoes size 37, add to cart")]
-        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 1, "36", "149.00", TestName = "Select item shoes size 36, add to cart")]
+        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 0, "37", "119.00", TestName = "Select item shoes size 37, add to cart, verify item price")]
+        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 1, "36", "149.00", TestName = "Select item shoes size 36, add to cart, verify item price")]
         public static void TestAddItemIntoCart(string login, string password, int targetGroup, string itemsGroup, string selectedTargetResult, int selectItem, string size, string price)
         {
             _membershopHomePage.NavigateToPage();
