@@ -11,7 +11,7 @@ namespace MembershopTest.Test
     public class MembershopTest : BaseTest
     {
         [TestCase("user", "password", false, "Neteisingas el. paštas arba slaptažodis!", TestName = "Test wrong user login")]
-        [TestCase("correctuser", "correctpassword", true, "Sveiki, Monika", TestName = "Test correct user login")]
+        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", true, "Sveiki, Monika", TestName = "Test correct user login")]
         public static void TestLogin(string login, string password, bool loginSuccess, string resultLoginMessage)
         {
             _membershopHomePage.NavigateToPage();
@@ -58,8 +58,8 @@ namespace MembershopTest.Test
         }
 
 
-        [TestCase("correctuser", "correctpassword", 1, "Avalynė", "Moterims", 0, "37", "119.00", TestName = "Select item shoes size 37, add to cart")]
-        [TestCase("correctuser", "correctpassword", 1, "Avalynė", "Moterims", 1, "36", "149.00", TestName = "Select item shoes size 36, add to cart")]
+        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 0, "37", "119.00", TestName = "Select item shoes size 37, add to cart")]
+        [TestCase("gdz.testing@gmail.com", "KLAjoklis357", 1, "Avalynė", "Moterims", 1, "36", "149.00", TestName = "Select item shoes size 36, add to cart")]
         public static void TestAddItemIntoCart(string login, string password, int targetGroup, string itemsGroup, string selectedTargetResult, int selectItem, string size, string price)
         {
             _membershopHomePage.NavigateToPage();
@@ -76,6 +76,7 @@ namespace MembershopTest.Test
             _membershopItemPage.OpenCartImmediately();
             _membershopCartPage.VerifySelectedSizeInCart(size);
             _membershopCartPage.VerifySelectedItemPriceInCart(price);
+            _membershopHomePage.LogOut();
         }
     }
 }
